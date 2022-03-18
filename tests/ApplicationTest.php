@@ -50,13 +50,17 @@ final class ApplicationTest extends TestCase
     {
         $application = new Volistx\FrameworkControl\FrameworkControl('http://localhost:8080', $this->secretKey);
         $subscription = $application->CreatePlan('Test Plan', 'No Idea', [
-            'amount' => '100',
-            'interval' => 'month',
-            'currency' => 'USD',
-            'trial_period_days' => '0',
+          "requests" => "150000",
+          "rate_limit" => "300"
         ]);
 
-        ray($subscription);
+        $this->assertSame(201, $subscription->getStatusCode());
+    }
+
+    public function testCreateSubscription(): void
+    {
+        $application = new Volistx\FrameworkControl\FrameworkControl('http://localhost:8080', $this->secretKey);
+        $subscription = $application->CreateSubscription(1, 'c823bb49-ae87-4d4e-85f6-00b97d672af3', date('Y-m-d H:i:s'));
 
         $this->assertSame(201, $subscription->getStatusCode());
     }

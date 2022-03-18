@@ -64,4 +64,22 @@ class FrameworkControl
             'data' => $data,
         ]);
     }
+
+    public function CreateSubscription(int $userID, string $planID, string $activatedAt, string $expiresAt = null) {
+        if ($expiresAt === null) {
+            $dataArray = [
+                'user_id' => $userID,
+                'plan_id' => $planID,
+                'plan_activated_at' => $activatedAt,
+            ];
+        } else {
+            $dataArray = [
+                'user_id' => $userID,
+                'plan_id' => $planID,
+                'plan_activated_at' => $activatedAt,
+                'plan_expires_at' => $expiresAt,
+            ];
+        }
+        return $this->requestHelper->Post('/sys-bin/admin/subscriptions', $dataArray);
+    }
 }
