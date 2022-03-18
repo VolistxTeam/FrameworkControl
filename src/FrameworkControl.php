@@ -34,9 +34,6 @@ class FrameworkControl
 
     public function GetPlans()
     {
-        return (new ResponseInstance)
-            ->setStatusCode(200)
-            ->setHeaders([])
-            ->setBody([]);
+        return $this->requestHelper->Get('/sys-bin/admin/plans');
     }
 }
