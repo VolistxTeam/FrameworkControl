@@ -20,7 +20,7 @@ class RequestHelper
     {
         try {
             $response = $this->client->request('GET', $route, [
-                'query' => $query
+                'query' => $query,
             ]);
 
             return (new ResponseInstance())
