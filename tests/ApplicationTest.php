@@ -50,8 +50,8 @@ final class ApplicationTest extends TestCase
     {
         $application = new Volistx\FrameworkControl\FrameworkControl('http://localhost:8080', $this->secretKey);
         $plan = $application->plan->CreatePlan('Test Plan', 'No Idea', [
-          "requests" => "150000",
-          "rate_limit" => "300"
+            'requests'   => '150000',
+            'rate_limit' => '300',
         ]);
 
         $this->assertSame(201, $plan->getStatusCode());

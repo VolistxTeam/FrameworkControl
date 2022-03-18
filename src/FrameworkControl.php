@@ -3,9 +3,7 @@
 namespace Volistx\FrameworkControl;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 use Volistx\FrameworkControl\Helpers\RequestHelper;
-use Volistx\FrameworkControl\Instances\ResponseInstance;
 use Volistx\FrameworkControl\Modules\PlanModule;
 use Volistx\FrameworkControl\Modules\SubscriptionModule;
 
@@ -30,8 +28,8 @@ class FrameworkControl
 
         $this->guzzleInstance = new Client([
             'base_uri' => $this->url,
-            'headers' => [
-                'Authorization' => 'Bearer ' . $this->secretKey,
+            'headers'  => [
+                'Authorization' => 'Bearer '.$this->secretKey,
             ],
         ]);
 

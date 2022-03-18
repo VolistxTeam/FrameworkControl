@@ -23,11 +23,12 @@ class PlanModule
         return $this->requestHelper->Get("/sys-bin/admin/plans/$id");
     }
 
-    public function CreatePlan(string $name, string $description, array $data) {
+    public function CreatePlan(string $name, string $description, array $data)
+    {
         return $this->requestHelper->Post('/sys-bin/admin/plans', [
-            'name' => $name,
+            'name'        => $name,
             'description' => $description,
-            'data' => $data,
+            'data'        => $data,
         ]);
     }
 }
