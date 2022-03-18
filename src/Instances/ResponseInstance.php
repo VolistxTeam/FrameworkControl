@@ -3,9 +3,16 @@
 namespace Volistx\FrameworkControl\Instances;
 
 class ResponseInstance {
+    private bool $error = false;
     private ?int $statusCode;
     private ?array $headers;
     private ?array $body;
+
+    public function setError(bool $error) {
+        $this->error = $error;
+
+        return $this;
+    }
 
     public function setStatusCode(?int $statusCode) {
         $this->statusCode = $statusCode;
@@ -35,6 +42,10 @@ class ResponseInstance {
 
     public function getBody() {
         return $this->body;
+    }
+
+    public function getError() {
+        return $this->error;
     }
 }
 

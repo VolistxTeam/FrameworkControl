@@ -14,6 +14,14 @@ final class ApplicationTest extends TestCase
         $this->assertSame(200, $plans->getStatusCode());
     }
 
+    public function testGetPlan(): void
+    {
+        $application = new Volistx\FrameworkControl\FrameworkControl('http://localhost:8080', $this->secretKey);
+        $plan = $application->GetPlan('c823bb49-ae87-4d4e-85f6-00b97d672af3');
+
+        $this->assertSame(200, $plan->getStatusCode());
+    }
+
     public function testGetSubscriptions(): void
     {
         $application = new Volistx\FrameworkControl\FrameworkControl('http://localhost:8080', $this->secretKey);
@@ -33,9 +41,23 @@ final class ApplicationTest extends TestCase
     public function testGetSubscription(): void
     {
         $application = new Volistx\FrameworkControl\FrameworkControl('http://localhost:8080', $this->secretKey);
-        $adminLogs = $application->GetSubscription('2769fc59-c976-44e7-b9d2-1b2b2f3f117');
+        $subscription = $application->GetSubscription('2769fc59-c976-44e7-b9d2-1b2b2f3f117d');
 
-        ray($adminLogs);
-        $this->assertSame(200, $adminLogs->getStatusCode());
+        $this->assertSame(200, $subscription->getStatusCode());
+    }
+
+    public function testCreatePlan(): void
+    {
+        $application = new Volistx\FrameworkControl\FrameworkControl('http://localhost:8080', $this->secretKey);
+        $subscription = $application->CreatePlan('Test Plan', 'No Idea', [
+            'amount' => '100',
+            'interval' => 'month',
+            'currency' => 'USD',
+            'trial_period_days' => '0',
+        ]);
+
+        ray($subscription);
+
+        $this->assertSame(201, $subscription->getStatusCode());
     }
 }

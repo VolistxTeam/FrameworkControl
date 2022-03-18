@@ -14,9 +14,32 @@ class RequestHelper {
         $this->client = $client;
     }
 
-    public function Get($route, $query = []) {
+    public function Get($route) {
         try {
-            $response = $this->client->request('GET', $route, [
+            $response = $this->client->request('GET', $route);
+
+            return (new ResponseInstance)
+                ->setStatusCode($response->getStatusCode())
+                ->setHeaders($response->getHeaders())
+                ->setBody(json_decode($response->getBody()->getContents(), true));
+        } catch (ClientException $e) {
+            return (new ResponseInstance)
+                ->setError(true)
+                ->setStatusCode($e->getCode())
+                ->setHeaders($e->getResponse()->getHeaders())
+                ->setBody(json_decode($e->getResponse()->getBody()->getContents(), true));
+        } catch (GuzzleException $e) {
+            return (new ResponseInstance)
+                ->setError(true)
+                ->setStatusCode($e->getCode())
+                ->setHeaders(null)
+                ->setBody(null);
+        }
+    }
+
+    public function Post($route, $query = []) {
+        try {
+            $response = $this->client->request('POST', $route, [
                 'json' => $query
             ]);
 
@@ -26,9 +49,16 @@ class RequestHelper {
                 ->setBody(json_decode($response->getBody()->getContents(), true));
         } catch (ClientException $e) {
             return (new ResponseInstance)
+                ->setError(true)
                 ->setStatusCode($e->getCode())
                 ->setHeaders($e->getResponse()->getHeaders())
                 ->setBody(json_decode($e->getResponse()->getBody()->getContents(), true));
+        } catch (GuzzleException $e) {
+            return (new ResponseInstance)
+                ->setError(true)
+                ->setStatusCode($e->getCode())
+                ->setHeaders(null)
+                ->setBody(null);
         }
     }
 }

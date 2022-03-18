@@ -37,6 +37,11 @@ class FrameworkControl
         return $this->requestHelper->Get('/sys-bin/admin/plans', ['page' => $page]);
     }
 
+    public function GetPlan(string $id)
+    {
+        return $this->requestHelper->Get("/sys-bin/admin/plans/$id");
+    }
+
     public function GetSubscriptions($page = 1)
     {
         return $this->requestHelper->Get('/sys-bin/admin/subscriptions', ['page' => $page]);
@@ -50,5 +55,13 @@ class FrameworkControl
     public function GetSubscription(string $id)
     {
         return $this->requestHelper->Get("/sys-bin/admin/subscriptions/$id");
+    }
+
+    public function CreatePlan(string $name, string $description, array $data) {
+        return $this->requestHelper->Post('/sys-bin/admin/plans', [
+            'name' => $name,
+            'description' => $description,
+            'data' => $data,
+        ]);
     }
 }
