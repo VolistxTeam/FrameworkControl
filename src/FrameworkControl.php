@@ -32,8 +32,13 @@ class FrameworkControl
         $this->requestHelper = new RequestHelper($this->guzzleInstance);
     }
 
-    public function GetPlans()
+    public function GetPlans($page = 1)
     {
-        return $this->requestHelper->Get('/sys-bin/admin/plans');
+        return $this->requestHelper->Get('/sys-bin/admin/plans', ['page' => $page]);
+    }
+
+    public function GetSubscriptions($page = 1)
+    {
+        return $this->requestHelper->Get('/sys-bin/admin/subscriptions', ['page' => $page]);
     }
 }
