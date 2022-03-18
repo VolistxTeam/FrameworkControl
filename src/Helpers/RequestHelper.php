@@ -16,10 +16,12 @@ class RequestHelper
         $this->client = $client;
     }
 
-    public function Get($route)
+    public function Get($route, $query = [])
     {
         try {
-            $response = $this->client->request('GET', $route);
+            $response = $this->client->request('GET', $route, [
+                'query' => $query
+            ]);
 
             return (new ResponseInstance())
                 ->setStatusCode($response->getStatusCode())
@@ -40,11 +42,11 @@ class RequestHelper
         }
     }
 
-    public function Post($route, $query = [])
+    public function Post($route, $array = [])
     {
         try {
             $response = $this->client->request('POST', $route, [
-                'json' => $query,
+                'json' => $array,
             ]);
 
             return (new ResponseInstance())

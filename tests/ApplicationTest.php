@@ -33,7 +33,7 @@ final class ApplicationTest extends TestCase
     public function testGetAdminLogs(): void
     {
         $application = new Volistx\FrameworkControl\FrameworkControl('http://localhost:8080', $this->secretKey);
-        $adminLogs = $application->GetAdminLogs();
+        $adminLogs = $application->adminLog->GetAdminLogs();
 
         $this->assertSame(200, $adminLogs->getStatusCode());
     }

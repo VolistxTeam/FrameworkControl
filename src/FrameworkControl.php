@@ -4,6 +4,7 @@ namespace Volistx\FrameworkControl;
 
 use GuzzleHttp\Client;
 use Volistx\FrameworkControl\Helpers\RequestHelper;
+use Volistx\FrameworkControl\Modules\AdminLogModule;
 use Volistx\FrameworkControl\Modules\PlanModule;
 use Volistx\FrameworkControl\Modules\SubscriptionModule;
 
@@ -21,6 +22,8 @@ class FrameworkControl
 
     public $plan;
 
+    public $adminLog;
+
     public function __construct(string $url, string $secretKey)
     {
         $this->url = $url;
@@ -36,10 +39,6 @@ class FrameworkControl
         $this->requestHelper = new RequestHelper($this->guzzleInstance);
         $this->subscription = new SubscriptionModule($this->requestHelper);
         $this->plan = new PlanModule($this->requestHelper);
-    }
-
-    public function GetAdminLogs($page = 1)
-    {
-        return $this->requestHelper->Get('/sys-bin/admin/logs', ['page' => $page]);
+        $this->adminLog = new AdminLogModule($this->requestHelper);
     }
 }
