@@ -3,6 +3,7 @@
 namespace Volistx\FrameworkControl\Helpers;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use Volistx\FrameworkControl\Instances\ResponseInstance;
 
@@ -23,11 +24,11 @@ class RequestHelper {
                 ->setStatusCode($response->getStatusCode())
                 ->setHeaders($response->getHeaders())
                 ->setBody(json_decode($response->getBody()->getContents(), true));
-        } catch (GuzzleException $e) {
+        } catch (ClientException $e) {
             return (new ResponseInstance)
-                ->setStatusCode(500)
-                ->setHeaders(null)
-                ->setBody(null);
+                ->setStatusCode($e->getCode())
+                ->setHeaders($e->getResponse()->getHeaders())
+                ->setBody(json_decode($e->getResponse()->getBody()->getContents(), true));
         }
     }
 }

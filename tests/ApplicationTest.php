@@ -17,9 +17,25 @@ final class ApplicationTest extends TestCase
     public function testGetSubscriptions(): void
     {
         $application = new Volistx\FrameworkControl\FrameworkControl('http://localhost:8080', $this->secretKey);
-        $plans = $application->GetSubscriptions(2);
+        $subscriptions = $application->GetSubscriptions();
 
-        ray($plans);
-        $this->assertSame(200, $plans->getStatusCode());
+        $this->assertSame(200, $subscriptions->getStatusCode());
+    }
+
+    public function testGetAdminLogs(): void
+    {
+        $application = new Volistx\FrameworkControl\FrameworkControl('http://localhost:8080', $this->secretKey);
+        $adminLogs = $application->GetAdminLogs();
+
+        $this->assertSame(200, $adminLogs->getStatusCode());
+    }
+
+    public function testGetSubscription(): void
+    {
+        $application = new Volistx\FrameworkControl\FrameworkControl('http://localhost:8080', $this->secretKey);
+        $adminLogs = $application->GetSubscription('2769fc59-c976-44e7-b9d2-1b2b2f3f117');
+
+        ray($adminLogs);
+        $this->assertSame(200, $adminLogs->getStatusCode());
     }
 }

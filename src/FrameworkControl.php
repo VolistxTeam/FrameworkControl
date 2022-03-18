@@ -41,4 +41,14 @@ class FrameworkControl
     {
         return $this->requestHelper->Get('/sys-bin/admin/subscriptions', ['page' => $page]);
     }
+
+    public function GetAdminLogs($page = 1)
+    {
+        return $this->requestHelper->Get('/sys-bin/admin/logs', ['page' => $page]);
+    }
+
+    public function GetSubscription(string $id)
+    {
+        return $this->requestHelper->Get("/sys-bin/admin/subscriptions/$id");
+    }
 }
