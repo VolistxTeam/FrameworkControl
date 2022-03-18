@@ -2,10 +2,32 @@
 
 namespace Volistx\FrameworkControl;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use Volistx\FrameworkControl\Helpers\RequestHelper;
+
 class FrameworkControl
 {
-    public function __construct()
+    private $url;
+
+    private $secretKey;
+
+    private $guzzleInstance;
+
+    private $requestHelper;
+
+    public function __construct(string $url, string $secretKey)
     {
-        echo 'FrameworkControl';
+        $this->url = $url;
+        $this->secretKey = $secretKey;
+
+        $this->guzzleInstance = new Client([
+            'base_uri' => $this->url,
+            'headers' => [
+                'Authorization' => 'Bearer ' . $this->secretKey,
+            ],
+        ]);
+
+        $this->requestHelper = new RequestHelper($this->guzzleInstance);
     }
 }
