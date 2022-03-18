@@ -5,6 +5,7 @@ namespace Volistx\FrameworkControl;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Volistx\FrameworkControl\Helpers\RequestHelper;
+use Volistx\FrameworkControl\Instances\ResponseInstance;
 
 class FrameworkControl
 {
@@ -29,5 +30,13 @@ class FrameworkControl
         ]);
 
         $this->requestHelper = new RequestHelper($this->guzzleInstance);
+    }
+
+    public function GetPlans()
+    {
+        return (new ResponseInstance)
+            ->setStatusCode(200)
+            ->setHeaders([])
+            ->setBody([]);
     }
 }
