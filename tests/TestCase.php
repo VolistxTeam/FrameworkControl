@@ -1,5 +1,7 @@
 <?php
 
+namespace Volistx\FrameworkControl\Tests;
+
 use Volistx\FrameworkControl\FrameworkControlServiceProvider;
 
 class TestCase extends \Orchestra\Testbench\TestCase

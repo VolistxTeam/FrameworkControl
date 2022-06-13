@@ -13,14 +13,27 @@ class PlanModule
         $this->requestHelper = $requestHelper;
     }
 
-    public function GetPlans($page = 1)
+    public function GetPlans($page = 1, $limit = 50, $search = null)
     {
-        return $this->requestHelper->Get('/sys-bin/admin/plans', ['page' => $page]);
+        $query = array();
+        $query['page'] = $page;
+        $query['limit'] = $limit;
+
+        if (is_string($search)) {
+            $query['search'] = $search;
+        }
+
+        return $this->requestHelper->Get('/sys-bin/admin/plans', $query);
     }
 
     public function GetPlan(string $id)
     {
         return $this->requestHelper->Get("/sys-bin/admin/plans/$id");
+    }
+
+    public function DeletePlan(string $id)
+    {
+        return $this->requestHelper->Delete("/sys-bin/admin/plans/$id");
     }
 
     public function CreatePlan(string $name, string $description, array $data)
