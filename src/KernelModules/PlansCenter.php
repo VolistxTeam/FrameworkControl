@@ -11,7 +11,7 @@ class PlansCenter
 
     public function __construct(string $baseUrl, string $token)
     {
-        $this->baseUrl = $baseUrl . '/sys-bin/admin/plans';
+        $this->baseUrl = $baseUrl.'/sys-bin/admin/plans';
         $this->token = $token;
     }
 
