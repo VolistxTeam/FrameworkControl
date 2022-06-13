@@ -50,17 +50,17 @@ class SubscriptionModule
             $dataArray['hmac_token'] = $hmacToken;
         }
 
-        return Requests::Put($this->baseUrl . '/' . $id, $this->token, $dataArray);
+        return Requests::Put($this->baseUrl.'/'.$id, $this->token, $dataArray);
     }
 
     public function Delete(string $id)
     {
-        return Requests::Delete($this->baseUrl . '/' . $id, $this->token, []);
+        return Requests::Delete($this->baseUrl.'/'.$id, $this->token, []);
     }
 
     public function Get(string $id)
     {
-        return Requests::Get($this->baseUrl . '/' . $id, $this->token, []);
+        return Requests::Get($this->baseUrl.'/'.$id, $this->token, []);
     }
 
     public function GetAll($page = 1, $limit = 50, $search = null)
@@ -86,7 +86,7 @@ class SubscriptionModule
             $dataArray['search'] = $search;
         }
 
-        return Requests::Get($this->baseUrl . '/' . $id . '/logs', $this->token, $dataArray);
+        return Requests::Get($this->baseUrl.'/'.$id.'/logs', $this->token, $dataArray);
     }
 
     public function GetUsages($id, $date, $mode = null)
@@ -98,6 +98,6 @@ class SubscriptionModule
             $dataArray['mode'] = $mode;
         }
 
-        return Requests::Get($this->baseUrl . '/' . $id . '/stats', $this->token, $dataArray);
+        return Requests::Get($this->baseUrl.'/'.$id.'/stats', $this->token, $dataArray);
     }
 }
