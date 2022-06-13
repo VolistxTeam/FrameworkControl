@@ -68,6 +68,32 @@ class RequestHelper
         }
     }
 
+    public function Put($route, $array = [])
+    {
+        try {
+            $response = $this->client->request('PUT', $route, [
+                'json' => $array,
+            ]);
+
+            return (new ResponseInstance())
+                ->setStatusCode($response->getStatusCode())
+                ->setHeaders($response->getHeaders())
+                ->setBody(json_decode($response->getBody()->getContents(), true));
+        } catch (ClientException $e) {
+            return (new ResponseInstance())
+                ->setError(true)
+                ->setStatusCode($e->getCode())
+                ->setHeaders($e->getResponse()->getHeaders())
+                ->setBody(json_decode($e->getResponse()->getBody()->getContents(), true));
+        } catch (GuzzleException $e) {
+            return (new ResponseInstance())
+                ->setError(true)
+                ->setStatusCode($e->getCode())
+                ->setHeaders(null)
+                ->setBody(null);
+        }
+    }
+
     public function Delete($route, $array = [])
     {
         try {
