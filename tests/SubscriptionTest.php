@@ -2,10 +2,10 @@
 
 namespace Volistx\FrameworkControl\Tests;
 
-use PHPUnit\Framework\Test;
 use Volistx\FrameworkControl\FrameworkControl;
 
-final class SubscriptionTest extends TestCase {
+final class SubscriptionTest extends TestCase
+{
     private $secretKey = 'itOdGNZsmdY6Y1jer1UgbJoJ94QsiVSV2zLhKww0e0CPb8Ft53mwzEa1DFXz5D7X';
 
     public function testGetPlans(): void

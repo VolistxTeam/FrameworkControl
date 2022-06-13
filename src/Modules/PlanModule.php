@@ -15,7 +15,7 @@ class PlanModule
 
     public function GetPlans($page = 1, $limit = 50, $search = null)
     {
-        $query = array();
+        $query = [];
         $query['page'] = $page;
         $query['limit'] = $limit;
 

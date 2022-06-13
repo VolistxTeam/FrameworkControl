@@ -15,7 +15,7 @@ class SubscriptionModule
 
     public function GetSubscriptions($page = 1, $limit = 50, $search = null)
     {
-        $query = array();
+        $query = [];
         $query['page'] = $page;
         $query['limit'] = $limit;
 
