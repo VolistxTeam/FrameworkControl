@@ -2,7 +2,6 @@
 
 namespace Volistx\FrameworkControl\Projects;
 
-use Volistx\FrameworkControl\Facades\Requests;
 use Volistx\FrameworkControl\Helpers\RequestHelper;
 use Volistx\FrameworkControl\KernelModules\PlansCenter;
 
@@ -11,7 +10,7 @@ class BINPoint
     private string $baseUrl = '/sys-bin/admin/plans';
     private string $token;
 
-    public function __construct($baseUrl,$token)
+    public function __construct($baseUrl, $token)
     {
         $this->baseUrl = $baseUrl;
         $this->token = $token;
@@ -43,6 +42,6 @@ class BINPoint
 
     public function Plans()
     {
-        return new PlansCenter($this->baseUrl,$this->token);
+        return new PlansCenter($this->baseUrl, $this->token);
     }
 }

@@ -18,9 +18,9 @@ class PlansCenter
     public function Create(string $name, string $description, array $data)
     {
         return Requests::POST($this->baseUrl, $this->token, [
-            'name' => $name,
+            'name'        => $name,
             'description' => $description,
-            'data' => $data,
+            'data'        => $data,
         ]);
     }
 }

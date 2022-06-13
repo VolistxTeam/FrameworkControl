@@ -15,6 +15,5 @@ class SubscriptionCenter
 
     public function Create(array $input)
     {
-
     }
 }
