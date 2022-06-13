@@ -20,7 +20,6 @@ final class SubscriptionTest extends TestCase
         $application = new FrameworkControl('http://localhost:8080', $this->secretKey);
         $plan = $application->plan->GetPlan('e53bb6b8-f116-4917-89e1-9015408604f3');
 
-
         $this->assertSame(200, $plan->getStatusCode());
     }
 
@@ -67,12 +66,14 @@ final class SubscriptionTest extends TestCase
         $this->assertSame(201, $subscription->getStatusCode());
     }
 
-    public function testUpdateSubscription(): void {
+    public function testUpdateSubscription(): void
+    {
         $application = new FrameworkControl('http://localhost:8080', $this->secretKey);
         $subscription = $application->subscription->UpdateSubscription('d5111d47-4e91-4929-8ca5-1409573a8a1f', '8cc033ba-743f-46c4-be21-fe08dc98a7b8', '2020-01-01 00:00:00', '2020-02-01 00:00:00');
 
         $this->assertSame(201, $subscription->getStatusCode());
     }
+
     public function testDeletePlan(): void
     {
         $application = new FrameworkControl('http://localhost:8080', $this->secretKey);
