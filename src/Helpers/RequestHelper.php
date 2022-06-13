@@ -9,114 +9,90 @@ use Volistx\FrameworkControl\Instances\ProcessedResponse;
 
 class RequestHelper
 {
-    private $client;
+    private Client $client;
 
-    public function __construct(Client $client)
+    public function __construct()
     {
-        $this->client = $client;
+        $this->client = new Client();
     }
 
-    public function Get($route, $query = [])
+    public function Get($url, $token, array $query): ProcessedResponse
     {
         try {
-            $response = $this->client->request('GET', $route, [
+            $response = $this->client->request('GET', $url, [
+                'headers' => [
+                    'Authorization' => "Bearer {$token}",
+                ],
                 'query' => $query,
             ]);
 
-            return (new ProcessedResponse())
-                ->setStatusCode($response->getStatusCode())
-                ->setHeaders($response->getHeaders())
-                ->setBody(json_decode($response->getBody()->getContents(), true));
-        } catch (ClientException $e) {
-            return (new ProcessedResponse())
-                ->setError(true)
-                ->setStatusCode($e->getCode())
-                ->setHeaders($e->getResponse()->getHeaders())
-                ->setBody(json_decode($e->getResponse()->getBody()->getContents(), true));
-        } catch (GuzzleException $e) {
-            return (new ProcessedResponse())
-                ->setError(true)
-                ->setStatusCode($e->getCode())
-                ->setHeaders(null)
-                ->setBody(null);
+            return new ProcessedResponse($response);
+        } catch (ClientException|GuzzleException $ex) {
+            return new ProcessedResponse($ex);
         }
     }
 
-    public function Post($route, $array = [])
+    public function Post($url, $token, array $query): ProcessedResponse
     {
         try {
-            $response = $this->client->request('POST', $route, [
-                'json' => $array,
+            $response = $this->client->request('POST', $url, [
+                'headers' => [
+                    'Authorization' => "Bearer {$token}",
+                ],
+                'json' => $query,
             ]);
 
-            return (new ProcessedResponse())
-                ->setStatusCode($response->getStatusCode())
-                ->setHeaders($response->getHeaders())
-                ->setBody(json_decode($response->getBody()->getContents(), true));
-        } catch (ClientException $e) {
-            return (new ProcessedResponse())
-                ->setError(true)
-                ->setStatusCode($e->getCode())
-                ->setHeaders($e->getResponse()->getHeaders())
-                ->setBody(json_decode($e->getResponse()->getBody()->getContents(), true));
-        } catch (GuzzleException $e) {
-            return (new ProcessedResponse())
-                ->setError(true)
-                ->setStatusCode($e->getCode())
-                ->setHeaders(null)
-                ->setBody(null);
+            return new ProcessedResponse($response);
+        } catch (ClientException|GuzzleException $ex) {
+            return new ProcessedResponse($ex);
         }
     }
 
-    public function Put($route, $array = [])
+    public function Put($url, $token, array $query): ProcessedResponse
     {
         try {
-            $response = $this->client->request('PUT', $route, [
-                'json' => $array,
+            $response = $this->client->request('PUT', $url, [
+                'headers' => [
+                    'Authorization' => "Bearer {$token}",
+                ],
+                'json' => $query,
             ]);
 
-            return (new ProcessedResponse())
-                ->setStatusCode($response->getStatusCode())
-                ->setHeaders($response->getHeaders())
-                ->setBody(json_decode($response->getBody()->getContents(), true));
-        } catch (ClientException $e) {
-            return (new ProcessedResponse())
-                ->setError(true)
-                ->setStatusCode($e->getCode())
-                ->setHeaders($e->getResponse()->getHeaders())
-                ->setBody(json_decode($e->getResponse()->getBody()->getContents(), true));
-        } catch (GuzzleException $e) {
-            return (new ProcessedResponse())
-                ->setError(true)
-                ->setStatusCode($e->getCode())
-                ->setHeaders(null)
-                ->setBody(null);
+            return new ProcessedResponse($response);
+        } catch (ClientException|GuzzleException $ex) {
+            return new ProcessedResponse($ex);
         }
     }
 
-    public function Delete($route, $array = [])
+    public function Patch($url, $token, array $query): ProcessedResponse
     {
         try {
-            $response = $this->client->request('DELETE', $route, [
-                'query' => $array,
+            $response = $this->client->request('PATCH', $url, [
+                'headers' => [
+                    'Authorization' => "Bearer {$token}",
+                ],
+                'json' => $query,
             ]);
 
-            return (new ProcessedResponse())
-                ->setStatusCode($response->getStatusCode())
-                ->setHeaders($response->getHeaders())
-                ->setBody(json_decode($response->getBody()->getContents(), true));
-        } catch (ClientException $e) {
-            return (new ProcessedResponse())
-                ->setError(true)
-                ->setStatusCode($e->getCode())
-                ->setHeaders($e->getResponse()->getHeaders())
-                ->setBody(json_decode($e->getResponse()->getBody()->getContents(), true));
-        } catch (GuzzleException $e) {
-            return (new ProcessedResponse())
-                ->setError(true)
-                ->setStatusCode($e->getCode())
-                ->setHeaders(null)
-                ->setBody(null);
+            return new ProcessedResponse($response);
+        } catch (ClientException|GuzzleException $ex) {
+            return new ProcessedResponse($ex);
+        }
+    }
+
+    public function Delete($url, $token, array $query): ProcessedResponse
+    {
+        try {
+            $response = $this->client->request('DELETE', $url, [
+                'headers' => [
+                    'Authorization' => "Bearer {$token}",
+                ],
+                'query' => $query,
+            ]);
+
+            return new ProcessedResponse($response);
+        } catch (ClientException|GuzzleException $ex) {
+            return new ProcessedResponse($ex);
         }
     }
 }

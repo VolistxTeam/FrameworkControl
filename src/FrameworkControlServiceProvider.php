@@ -3,14 +3,14 @@
 namespace Volistx\FrameworkControl;
 
 use Illuminate\Support\ServiceProvider;
-use Volistx\FrameworkControl\Helpers\RequestsCenter;
+use Volistx\FrameworkControl\Helpers\RequestHelper;
 
 class FrameworkControlServiceProvider extends ServiceProvider
 {
     public function register()
     {
         $this->app->bind('Requests', function () {
-            return new RequestsCenter();
+            return new RequestHelper();
         });
     }
 

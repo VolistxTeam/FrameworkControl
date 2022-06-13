@@ -36,4 +36,24 @@ class ProcessedResponse
             $this->body = null;
         }
     }
+
+    public function isError(): bool
+    {
+        return $this->error;
+    }
+
+    public function getStatusCode(): ?int
+    {
+        return $this->statusCode;
+    }
+
+    public function getHeaders(): ?array
+    {
+        return $this->headers;
+    }
+
+    public function getBody(): ?array
+    {
+        return $this->body;
+    }
 }

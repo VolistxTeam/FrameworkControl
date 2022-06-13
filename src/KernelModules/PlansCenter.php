@@ -15,9 +15,19 @@ class PlansCenter
         $this->token = $token;
     }
 
-    public function Create(string $name, string $description, array $data)
+    public function GetPlan(string $id)
     {
-        return Requests::POST($this->baseUrl, $this->token, [
+        return Requests::Get($this->baseUrl . '/' . $id, $this->token, []);
+    }
+
+    public function GetPlans()
+    {
+        return Requests::Get($this->baseUrl, $this->token, []);
+    }
+
+    public function CreatePlan(string $name, string $description, array $data)
+    {
+        return Requests::Post($this->baseUrl, $this->token, [
             'name'        => $name,
             'description' => $description,
             'data'        => $data,
