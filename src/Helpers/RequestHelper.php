@@ -5,7 +5,7 @@ namespace Volistx\FrameworkControl\Helpers;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
-use Volistx\FrameworkControl\Instances\ResponseInstance;
+use Volistx\FrameworkControl\Instances\ProcessedResponse;
 
 class RequestHelper
 {
@@ -23,18 +23,18 @@ class RequestHelper
                 'query' => $query,
             ]);
 
-            return (new ResponseInstance())
+            return (new ProcessedResponse())
                 ->setStatusCode($response->getStatusCode())
                 ->setHeaders($response->getHeaders())
                 ->setBody(json_decode($response->getBody()->getContents(), true));
         } catch (ClientException $e) {
-            return (new ResponseInstance())
+            return (new ProcessedResponse())
                 ->setError(true)
                 ->setStatusCode($e->getCode())
                 ->setHeaders($e->getResponse()->getHeaders())
                 ->setBody(json_decode($e->getResponse()->getBody()->getContents(), true));
         } catch (GuzzleException $e) {
-            return (new ResponseInstance())
+            return (new ProcessedResponse())
                 ->setError(true)
                 ->setStatusCode($e->getCode())
                 ->setHeaders(null)
@@ -49,18 +49,18 @@ class RequestHelper
                 'json' => $array,
             ]);
 
-            return (new ResponseInstance())
+            return (new ProcessedResponse())
                 ->setStatusCode($response->getStatusCode())
                 ->setHeaders($response->getHeaders())
                 ->setBody(json_decode($response->getBody()->getContents(), true));
         } catch (ClientException $e) {
-            return (new ResponseInstance())
+            return (new ProcessedResponse())
                 ->setError(true)
                 ->setStatusCode($e->getCode())
                 ->setHeaders($e->getResponse()->getHeaders())
                 ->setBody(json_decode($e->getResponse()->getBody()->getContents(), true));
         } catch (GuzzleException $e) {
-            return (new ResponseInstance())
+            return (new ProcessedResponse())
                 ->setError(true)
                 ->setStatusCode($e->getCode())
                 ->setHeaders(null)
@@ -75,18 +75,18 @@ class RequestHelper
                 'json' => $array,
             ]);
 
-            return (new ResponseInstance())
+            return (new ProcessedResponse())
                 ->setStatusCode($response->getStatusCode())
                 ->setHeaders($response->getHeaders())
                 ->setBody(json_decode($response->getBody()->getContents(), true));
         } catch (ClientException $e) {
-            return (new ResponseInstance())
+            return (new ProcessedResponse())
                 ->setError(true)
                 ->setStatusCode($e->getCode())
                 ->setHeaders($e->getResponse()->getHeaders())
                 ->setBody(json_decode($e->getResponse()->getBody()->getContents(), true));
         } catch (GuzzleException $e) {
-            return (new ResponseInstance())
+            return (new ProcessedResponse())
                 ->setError(true)
                 ->setStatusCode($e->getCode())
                 ->setHeaders(null)
@@ -101,18 +101,18 @@ class RequestHelper
                 'query' => $array,
             ]);
 
-            return (new ResponseInstance())
+            return (new ProcessedResponse())
                 ->setStatusCode($response->getStatusCode())
                 ->setHeaders($response->getHeaders())
                 ->setBody(json_decode($response->getBody()->getContents(), true));
         } catch (ClientException $e) {
-            return (new ResponseInstance())
+            return (new ProcessedResponse())
                 ->setError(true)
                 ->setStatusCode($e->getCode())
                 ->setHeaders($e->getResponse()->getHeaders())
                 ->setBody(json_decode($e->getResponse()->getBody()->getContents(), true));
         } catch (GuzzleException $e) {
-            return (new ResponseInstance())
+            return (new ProcessedResponse())
                 ->setError(true)
                 ->setStatusCode($e->getCode())
                 ->setHeaders(null)

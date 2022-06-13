@@ -4,9 +4,9 @@ namespace Volistx\FrameworkControl;
 
 use GuzzleHttp\Client;
 use Volistx\FrameworkControl\Helpers\RequestHelper;
-use Volistx\FrameworkControl\Modules\AdminLogModule;
-use Volistx\FrameworkControl\Modules\PlanModule;
-use Volistx\FrameworkControl\Modules\SubscriptionModule;
+use Volistx\FrameworkControl\Projects\AdminLogModule;
+use Volistx\FrameworkControl\Projects\BINPoint;
+use Volistx\FrameworkControl\Projects\SubscriptionModule;
 
 class FrameworkControl
 {
@@ -38,7 +38,7 @@ class FrameworkControl
 
         $this->requestHelper = new RequestHelper($this->guzzleInstance);
         $this->subscription = new SubscriptionModule($this->requestHelper);
-        $this->plan = new PlanModule($this->requestHelper);
+        $this->plan = new BINPoint($this->requestHelper);
         $this->adminLog = new AdminLogModule($this->requestHelper);
     }
 }

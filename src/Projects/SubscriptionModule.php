@@ -1,6 +1,6 @@
 <?php
 
-namespace Volistx\FrameworkControl\Modules;
+namespace Volistx\FrameworkControl\Projects;
 
 use Volistx\FrameworkControl\Helpers\RequestHelper;
 
