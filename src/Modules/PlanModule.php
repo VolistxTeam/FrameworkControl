@@ -1,10 +1,10 @@
 <?php
 
-namespace Volistx\FrameworkControl\KernelModules;
+namespace Volistx\FrameworkControl\Modules;
 
 use Volistx\FrameworkControl\Facades\Requests;
 
-class PlansCenter
+class PlanModule
 {
     private string $baseUrl;
     private string $token;
@@ -15,17 +15,25 @@ class PlansCenter
         $this->token = $token;
     }
 
-    public function GetPlan(string $id)
+    public function Get(string $id)
     {
         return Requests::Get($this->baseUrl.'/'.$id, $this->token, []);
     }
 
-    public function GetPlans()
+    public function GetAll($page = 1, $limit = 50, $search = null)
     {
-        return Requests::Get($this->baseUrl, $this->token, []);
+        $dataArray = [];
+        $dataArray['page'] = $page;
+        $dataArray['limit'] = $limit;
+
+        if ($search !== null) {
+            $dataArray['search'] = $search;
+        }
+
+        return Requests::Get($this->baseUrl, $this->token, $dataArray);
     }
 
-    public function CreatePlan(string $name, string $description, array $data)
+    public function Create(string $name, string $description, array $data)
     {
         return Requests::Post($this->baseUrl, $this->token, [
             'name'        => $name,

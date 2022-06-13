@@ -7,7 +7,7 @@ final class PlanTest extends TestCase
     public function testCreatePlan(): void
     {
         $testModel = new TestModel();
-        $plan = $testModel->Plan()->CreatePlan('Test1', 'Test', [
+        $plan = $testModel->Plan()->Create('Test1', 'Test', [
             'requests'   => 150000,
             'rate_limit' => 500,
         ]);
@@ -18,7 +18,7 @@ final class PlanTest extends TestCase
     public function testGetPlans(): void
     {
         $testModel = new TestModel();
-        $plan = $testModel->Plan()->GetPlans();
+        $plan = $testModel->Plan()->GetAll();
 
         $this->assertSame(200, $plan->getStatusCode());
     }
@@ -26,7 +26,7 @@ final class PlanTest extends TestCase
     public function testGetPlan(): void
     {
         $testModel = new TestModel();
-        $plan = $testModel->Plan()->GetPlan('941dcced-fdee-4d4c-a9e3-f56dc5d3c280');
+        $plan = $testModel->Plan()->Get('941dcced-fdee-4d4c-a9e3-f56dc5d3c280');
 
         $this->assertSame(200, $plan->getStatusCode());
     }

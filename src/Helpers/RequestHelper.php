@@ -16,7 +16,7 @@ class RequestHelper
         $this->client = new Client();
     }
 
-    public function Get($url, $token, array $query): ProcessedResponse
+    public function Get($url, $token, array $query = []): ProcessedResponse
     {
         try {
             $response = $this->client->request('GET', $url, [
@@ -32,7 +32,7 @@ class RequestHelper
         }
     }
 
-    public function Post($url, $token, array $query): ProcessedResponse
+    public function Post($url, $token, array $query = []): ProcessedResponse
     {
         try {
             $response = $this->client->request('POST', $url, [
@@ -48,7 +48,7 @@ class RequestHelper
         }
     }
 
-    public function Put($url, $token, array $query): ProcessedResponse
+    public function Put($url, $token, array $query = []): ProcessedResponse
     {
         try {
             $response = $this->client->request('PUT', $url, [
@@ -64,7 +64,7 @@ class RequestHelper
         }
     }
 
-    public function Patch($url, $token, array $query): ProcessedResponse
+    public function Patch($url, $token, array $query = []): ProcessedResponse
     {
         try {
             $response = $this->client->request('PATCH', $url, [
@@ -80,7 +80,7 @@ class RequestHelper
         }
     }
 
-    public function Delete($url, $token, array $query): ProcessedResponse
+    public function Delete($url, $token, array $query = []): ProcessedResponse
     {
         try {
             $response = $this->client->request('DELETE', $url, [

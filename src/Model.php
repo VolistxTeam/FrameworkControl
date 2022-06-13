@@ -2,8 +2,8 @@
 
 namespace Volistx\FrameworkControl;
 
-use Volistx\FrameworkControl\KernelModules\PlansCenter;
-use Volistx\FrameworkControl\KernelModules\SubscriptionCenter;
+use Volistx\FrameworkControl\Modules\PlanModule;
+use Volistx\FrameworkControl\Modules\SubscriptionModule;
 
 abstract class Model
 {
@@ -12,11 +12,11 @@ abstract class Model
 
     public function Plan()
     {
-        return new PlansCenter($this->baseUrl, $this->token);
+        return new PlanModule($this->baseUrl, $this->token);
     }
 
     public function Subscription()
     {
-        return new SubscriptionCenter($this->baseUrl, $this->token);
+        return new SubscriptionModule($this->baseUrl, $this->token);
     }
 }
