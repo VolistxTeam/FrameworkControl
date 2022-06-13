@@ -2,6 +2,7 @@
 
 namespace Volistx\FrameworkControl\Modules;
 
+use Carbon\Carbon;
 use Volistx\FrameworkControl\Facades\Requests;
 
 class SubscriptionModule
@@ -15,22 +16,22 @@ class SubscriptionModule
         $this->token = $token;
     }
 
-    public function Create(int $userID, string $planID, string $activatedAt, string $expiresAt = null)
+    public function Create(int $userID, string $planID, \DateTime $activatedAt, \DateTime $expiresAt = null)
     {
         $dataArray = [
             'user_id'           => $userID,
             'plan_id'           => $planID,
-            'plan_activated_at' => $activatedAt,
+            'plan_activated_at' => Carbon::instance($activatedAt)->format('Y-m-d H:i:s'),
         ];
 
         if ($expiresAt !== null) {
-            $dataArray['plan_expires_at'] = $expiresAt;
+            $dataArray['plan_expires_at'] = Carbon::instance($expiresAt)->format('Y-m-d H:i:s');
         }
 
         return Requests::Post($this->baseUrl, $this->token, $dataArray);
     }
 
-    public function Update(string $id, string $planID = null, string $activatedAt = null, string $expiresAt = null, string $hmacToken = null)
+    public function Update(string $id, string $planID = null, \DateTime $activatedAt = null, \DateTime $expiresAt = null, string $hmacToken = null)
     {
         $dataArray = [];
 
@@ -39,11 +40,11 @@ class SubscriptionModule
         }
 
         if ($activatedAt !== null) {
-            $dataArray['plan_activated_at'] = $activatedAt;
+            $dataArray['plan_activated_at'] = Carbon::instance($activatedAt)->format('Y-m-d H:i:s');
         }
 
         if ($expiresAt !== null) {
-            $dataArray['plan_expires_at'] = $expiresAt;
+            $dataArray['plan_expires_at'] = Carbon::instance($expiresAt)->format('Y-m-d H:i:s');
         }
 
         if ($expiresAt !== null) {
