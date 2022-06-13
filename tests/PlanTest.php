@@ -8,8 +8,8 @@ final class PlanTest extends TestCase
     {
         $testModel = new TestModel();
         $plan = $testModel->Plan()->CreatePlan('Test1', 'Test', [
-            'requests' => 150000,
-            'rate_limit' => 500
+            'requests'   => 150000,
+            'rate_limit' => 500,
         ]);
 
         $this->assertSame(201, $plan->getStatusCode());

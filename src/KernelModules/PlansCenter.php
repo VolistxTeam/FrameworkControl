@@ -17,7 +17,7 @@ class PlansCenter
 
     public function GetPlan(string $id)
     {
-        return Requests::Get($this->baseUrl . '/' . $id, $this->token, []);
+        return Requests::Get($this->baseUrl.'/'.$id, $this->token, []);
     }
 
     public function GetPlans()
