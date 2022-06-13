@@ -3,11 +3,16 @@
 namespace Volistx\FrameworkControl\Tests;
 
 use Volistx\FrameworkControl\FrameworkControl;
+use Volistx\FrameworkControl\Projects\BINPoint;
 
 final class SubscriptionTest extends TestCase
 {
     private $secretKey = 'itOdGNZsmdY6Y1jer1UgbJoJ94QsiVSV2zLhKww0e0CPb8Ft53mwzEa1DFXz5D7X';
 
+    public function testShit(): void {
+        $newClass = new BINPoint();
+        $newClass->Plans()->Create();
+    }
     public function testGetPlans(): void
     {
         $application = new FrameworkControl('http://localhost:8080', $this->secretKey);
