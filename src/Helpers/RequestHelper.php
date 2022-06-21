@@ -80,14 +80,13 @@ class RequestHelper
         }
     }
 
-    public function Delete($url, $token, array $query = []): ProcessedResponse
+    public function Delete($url, $token): ProcessedResponse
     {
         try {
             $response = $this->client->request('DELETE', $url, [
                 'headers' => [
                     'Authorization' => "Bearer {$token}",
-                ],
-                'query' => $query,
+                ]
             ]);
 
             return new ProcessedResponse($response);
