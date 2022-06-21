@@ -86,7 +86,7 @@ class RequestHelper
             $response = $this->client->request('DELETE', $url, [
                 'headers' => [
                     'Authorization' => "Bearer {$token}",
-                ]
+                ],
             ]);
 
             return new ProcessedResponse($response);
