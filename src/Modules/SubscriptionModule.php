@@ -15,9 +15,9 @@ class SubscriptionModule extends FullModuleBase
     public function GetLogs($id, $page = 1, $limit = 50, $search = '')
     {
         return Requests::Get("$this->baseUrl/$id/logs", $this->token, [
-            'page' => $page,
-            'limit' => $limit,
-            'search' => $search
+            'page'   => $page,
+            'limit'  => $limit,
+            'search' => $search,
         ]);
     }
 
@@ -25,7 +25,7 @@ class SubscriptionModule extends FullModuleBase
     {
         return Requests::Get("$this->baseUrl/$id/stats", $this->token, [
             'date' => $date,
-            'mode' => $mode
+            'mode' => $mode,
         ]);
     }
 }

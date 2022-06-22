@@ -17,9 +17,9 @@ abstract class PartialModuleBase
     public function GetAll($page = 1, $limit = 50, $search = '')
     {
         return Requests::Get($this->baseUrl, $this->token, [
-            'page' => $page,
-            'limit' => $limit,
-            'search' => $search
+            'page'   => $page,
+            'limit'  => $limit,
+            'search' => $search,
         ]);
     }
 }
