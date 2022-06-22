@@ -44,6 +44,7 @@ class RequestHelper
 
             return new ProcessedResponse($response);
         } catch (ClientException|GuzzleException $ex) {
+            ray($ex);
             return new ProcessedResponse($ex);
         }
     }
