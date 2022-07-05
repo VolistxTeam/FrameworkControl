@@ -11,7 +11,7 @@ class ProcessedResponse
     private bool $error = false;
     private ?int $statusCode;
     private ?array $headers;
-    private ?array $body;
+    private mixed $body;
 
     public function __construct($response)
     {
