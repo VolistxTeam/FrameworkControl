@@ -11,15 +11,23 @@ abstract class PartialModuleBase
 
     public function Get(string $id)
     {
-        return Requests::Get("$this->baseUrl/$id", $this->token);
+        $result = Requests::Get("$this->baseUrl/$id", $this->token);
+
+        if ($result->status_code == 200)
+            return $result->body;
+        return false;
     }
 
     public function GetAll($page = 1, $limit = 50, $search = '')
     {
-        return Requests::Get($this->baseUrl, $this->token, [
-            'page'   => $page,
-            'limit'  => $limit,
+        $result = Requests::Get($this->baseUrl, $this->token, [
+            'page' => $page,
+            'limit' => $limit,
             'search' => $search,
         ]);
+
+        if ($result->status_code == 200)
+            return $result->body;
+        return false;
     }
 }

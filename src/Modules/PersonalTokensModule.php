@@ -14,11 +14,19 @@ class PersonalTokensModule extends FullModuleBase
 
     public function Reset($id)
     {
-        return Requests::Put("$this->baseUrl/$id/reset", $this->token);
+        $result = Requests::Put("$this->baseUrl/$id/reset", $this->token);
+
+        if ($result->status_code == 200)
+            return true;
+        return false;
     }
 
     public function Sync($id)
     {
-        return Requests::Post("$this->baseUrl/$id/sync", $this->token);
+        $result = Requests::Post("$this->baseUrl/$id/sync", $this->token);
+
+        if ($result->status_code == 200)
+            return $result->body;
+        return false;
     }
 }
