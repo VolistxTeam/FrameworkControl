@@ -24,7 +24,7 @@ class PlanModule extends FullModuleBase
         $result = $this->GetAll(1, 1, "search=name:$name");
 
         if ($result->status_code == 200)
-            return $result->body;
+            return $result->body->items[0];
         return false;
     }
 
@@ -33,7 +33,7 @@ class PlanModule extends FullModuleBase
         $result = $this->GetAll(1, 1, "search=tag:$tag");
 
         if ($result->status_code == 200)
-            return $result->body[0];
+            return $result->body->items[0];
         return false;
     }
 }
