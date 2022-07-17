@@ -16,8 +16,10 @@ class PersonalTokensModule extends FullModuleBase
     {
         $result = Requests::Put("$this->baseUrl/$id/reset", $this->token);
 
-        if ($result->status_code == 200)
+        if ($result->status_code == 200) {
             return true;
+        }
+
         return false;
     }
 
@@ -25,8 +27,10 @@ class PersonalTokensModule extends FullModuleBase
     {
         $result = Requests::Post("$this->baseUrl/$id/sync", $this->token);
 
-        if ($result->status_code == 200)
+        if ($result->status_code == 200) {
             return $result->body;
+        }
+
         return false;
     }
 }

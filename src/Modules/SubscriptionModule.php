@@ -24,23 +24,27 @@ class SubscriptionModule extends FullModuleBase
         $expires_at = Requests::Get("$this->baseUrl/$id", $this->token)->body->expires_at;
 
         return match ($timeunit) {
-            'day' => Carbon::parse($expires_at)->diffInDays(Carbon::now()),
+            'day'    => Carbon::parse($expires_at)->diffInDays(Carbon::now()),
             'second' => Carbon::parse($expires_at)->diffInSeconds(Carbon::now()),
             'minute' => Carbon::parse($expires_at)->diffInMinutes(Carbon::now()),
-            'hour' => Carbon::parse($expires_at)->diffInHours(Carbon::now()),
-            'human' => Carbon::parse($expires_at)->diffForHumans(Carbon::now())
+            'hour'   => Carbon::parse($expires_at)->diffInHours(Carbon::now()),
+            'human'  => Carbon::parse($expires_at)->diffForHumans(Carbon::now())
         };
     }
 
     public function UpgradeSubscriptionPlan($id, string $new_plan_id): bool
     {
-        $result = $this->Update($id, [
-                'plan_id' => $new_plan_id
+        $result = $this->Update(
+            $id,
+            [
+                'plan_id' => $new_plan_id,
             ]
         );
 
-        if ($result->status_code == 200)
+        if ($result->status_code == 200) {
             return true;
+        }
+
         return false;
     }
 
@@ -52,20 +56,24 @@ class SubscriptionModule extends FullModuleBase
     public function ExtendPlanDuration($id, int $extra_duration, $timeunit = 'day'): bool
     {
         $newExpiryDate = match ($timeunit) {
-            'day' => Carbon::now()->addDays($extra_duration),
+            'day'    => Carbon::now()->addDays($extra_duration),
             'second' => Carbon::now()->addSeconds($extra_duration),
             'minute' => Carbon::now()->addMinutes($extra_duration),
-            'hour' => Carbon::now()->addHours($extra_duration),
+            'hour'   => Carbon::now()->addHours($extra_duration),
         };
 
-        $result = $this->Update($id, [
+        $result = $this->Update(
+            $id,
+            [
                 'plan_activated_at' => Carbon::now(),
-                'plan_expires_at' => $newExpiryDate
+                'plan_expires_at'   => $newExpiryDate,
             ]
         );
 
-        if ($result->status_code == 200)
+        if ($result->status_code == 200) {
             return true;
+        }
+
         return false;
     }
 
@@ -73,21 +81,25 @@ class SubscriptionModule extends FullModuleBase
     {
         $result = $this->GetAll($page, $limit, "search=plan_id:$plan_id");
 
-        if ($result->status_code == 200)
+        if ($result->status_code == 200) {
             return $result->body;
+        }
+
         return false;
     }
 
     public function GetLogs($id, $page = 1, $limit = 50, $search = '')
     {
         $result = Requests::Get("$this->baseUrl/$id/logs", $this->token, [
-            'page' => $page,
-            'limit' => $limit,
+            'page'   => $page,
+            'limit'  => $limit,
             'search' => $search,
         ]);
 
-        if ($result->status_code == 200)
+        if ($result->status_code == 200) {
             return $result->body;
+        }
+
         return false;
     }
 
@@ -98,8 +110,10 @@ class SubscriptionModule extends FullModuleBase
             'mode' => $mode,
         ]);
 
-        if ($result->status_code == 200)
+        if ($result->status_code == 200) {
             return $result->body;
+        }
+
         return false;
     }
 }
