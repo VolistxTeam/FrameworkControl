@@ -1,6 +1,6 @@
 <?php
 
-namespace Volistx\FrameworkControl\Triats;
+namespace Volistx\FrameworkControl\Traits;
 
 use Volistx\FrameworkControl\Modules\AdminLogModule;
 use Volistx\FrameworkControl\Modules\PersonalTokensModule;
