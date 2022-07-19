@@ -23,9 +23,9 @@ class PersonalTokensModule extends FullModuleBase
         return false;
     }
 
-    public function Sync($id)
+    public function Sync()
     {
-        $result = Requests::Post("$this->baseUrl/$id/sync", $this->token);
+        $result = Requests::Post("$this->baseUrl/personal-tokens/sync", $this->token);
 
         if ($result->status_code == 200) {
             return $result->body;

@@ -24,8 +24,8 @@ trait HasKernelFunctions
         return new AdminLogModule($this->base_url, $this->access_key);
     }
 
-    public function PersonalToken(string $id)
+    public function PersonalToken(string $subscription_id)
     {
-        return new PersonalTokensModule($this->base_url, $this->access_key, $id);
+        return new PersonalTokensModule($this->base_url, $this->access_key, $subscription_id);
     }
 }
