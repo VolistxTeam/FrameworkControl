@@ -27,7 +27,7 @@ class PersonalTokensModule extends FullModuleBase
     {
         $result = Requests::Post("$this->baseUrl/personal-tokens/sync", $this->token);
 
-        if ($result->status_code == 200) {
+        if ($result->status_code == 201) {
             return $result->body;
         }
 
