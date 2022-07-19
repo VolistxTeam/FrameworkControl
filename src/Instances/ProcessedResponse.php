@@ -8,10 +8,10 @@ use Psr\Http\Message\ResponseInterface;
 
 class ProcessedResponse
 {
-    private bool $error = false;
-    private ?int $status_code;
-    private ?array $headers;
-    private mixed $body;
+    public bool $error = false;
+    public ?int $status_code;
+    public ?array $headers;
+    public mixed $body;
 
     public function __construct($response)
     {
@@ -35,25 +35,5 @@ class ProcessedResponse
             $this->headers = null;
             $this->body = null;
         }
-    }
-
-    public function isError(): bool
-    {
-        return $this->error;
-    }
-
-    public function getStatusCode(): ?int
-    {
-        return $this->status_code;
-    }
-
-    public function getHeaders(): ?array
-    {
-        return $this->headers;
-    }
-
-    public function getBody(): ?array
-    {
-        return $this->body;
     }
 }
