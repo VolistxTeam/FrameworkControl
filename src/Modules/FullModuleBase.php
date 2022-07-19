@@ -10,7 +10,7 @@ abstract class FullModuleBase extends PartialModuleBase
     {
         $result = Requests::Post($this->baseUrl, $this->token, $input);
 
-        if ($result->status_code == 200) {
+        if ($result->status_code == 201) {
             return $result->body;
         }
 
