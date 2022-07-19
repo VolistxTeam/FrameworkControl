@@ -7,7 +7,7 @@ use Volistx\FrameworkControl\Modules\PersonalTokensModule;
 use Volistx\FrameworkControl\Modules\PlanModule;
 use Volistx\FrameworkControl\Modules\SubscriptionModule;
 
-trait HasProductFunctions
+trait HasKernelFunctions
 {
     public function Plan()
     {
