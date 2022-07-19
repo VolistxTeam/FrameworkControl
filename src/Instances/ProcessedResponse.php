@@ -9,14 +9,14 @@ use Psr\Http\Message\ResponseInterface;
 class ProcessedResponse
 {
     private bool $error = false;
-    private ?int $statusCode;
+    private ?int $status_code;
     private ?array $headers;
     private mixed $body;
 
     public function __construct($response)
     {
         if ($response instanceof (ResponseInterface::class)) {
-            $this->statusCode = $response->getStatusCode();
+            $this->status_code = $response->getStatusCode();
             $this->headers = $response->getHeaders();
             $this->body = json_decode($response->getBody()->getContents(), true);
             $this->error = false;
@@ -24,14 +24,14 @@ class ProcessedResponse
 
         if ($response instanceof (ClientException::class)) {
             $this->error = true;
-            $this->statusCode = $response->getCode();
+            $this->status_code = $response->getCode();
             $this->headers = $response->getResponse()->getHeaders();
             $this->body = json_decode($response->getResponse()->getBody()->getContents(), true);
         }
 
         if ($response instanceof (GuzzleException::class)) {
             $this->error = true;
-            $this->statusCode = $response->getCode();
+            $this->status_code = $response->getCode();
             $this->headers = null;
             $this->body = null;
         }
@@ -44,7 +44,7 @@ class ProcessedResponse
 
     public function getStatusCode(): ?int
     {
-        return $this->statusCode;
+        return $this->status_code;
     }
 
     public function getHeaders(): ?array
