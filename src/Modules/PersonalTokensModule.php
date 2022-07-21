@@ -17,7 +17,7 @@ class PersonalTokensModule extends FullModuleBase
         $result = Requests::Put("$this->baseUrl/$id/reset", $this->token);
 
         if ($result->status_code == 200) {
-            return true;
+            return $result->body;
         }
 
         return false;
