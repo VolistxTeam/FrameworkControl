@@ -12,34 +12,16 @@ class PlanModule extends FullModuleBase
 
     public function FindById(string $id)
     {
-        $result = $this->Get($id);
-
-        if ($result->status_code == 200) {
-            return $result->body;
-        }
-
-        return false;
+       return $this->Get($id);
     }
 
     public function FindPlansByName(string $name)
     {
-        $result = $this->GetAll(1, 1, "search=name:$name");
-
-        if ($result->status_code == 200) {
-            return $result->body->items[0];
-        }
-
-        return false;
+        return $this->GetAll(1, 1, "search=name:$name");
     }
 
     public function FindPlanByTag(string $tag)
     {
-        $result = $this->GetAll(1, 1, "search=tag:$tag");
-
-        if ($result->status_code == 200) {
-            return $result->body->items[0];
-        }
-
-        return false;
+        return $this->GetAll(1, 1, "search=tag:$tag");
     }
 }
