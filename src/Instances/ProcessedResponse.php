@@ -2,6 +2,7 @@
 
 namespace Volistx\FrameworkControl\Instances;
 
+use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
@@ -23,6 +24,13 @@ class ProcessedResponse
         }
 
         if ($response instanceof (ClientException::class)) {
+            $this->error = true;
+            $this->status_code = $response->getCode();
+            $this->headers = $response->getResponse()->getHeaders();
+            $this->body = json_decode($response->getResponse()->getBody()->getContents(), true);
+        }
+
+        if ($response instanceof (BadResponseException::class)) {
             $this->error = true;
             $this->status_code = $response->getCode();
             $this->headers = $response->getResponse()->getHeaders();
