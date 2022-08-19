@@ -13,7 +13,7 @@ abstract class FullModuleBase extends PartialModuleBase
 
     public function Update($id, array $inputs)
     {
-       return Requests::Put("$this->baseUrl/$id", $this->token, $inputs);
+        return Requests::Put("$this->baseUrl/$id", $this->token, $inputs);
     }
 
     public function Delete($id)

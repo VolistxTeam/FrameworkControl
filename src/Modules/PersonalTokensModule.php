@@ -19,6 +19,6 @@ class PersonalTokensModule extends FullModuleBase
 
     public function Sync()
     {
-       return Requests::Post("$this->baseUrl/personal-tokens/sync", $this->token);
+        return Requests::Post("$this->baseUrl/personal-tokens/sync", $this->token);
     }
 }

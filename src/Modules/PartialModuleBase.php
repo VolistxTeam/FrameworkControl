@@ -11,7 +11,7 @@ abstract class PartialModuleBase
 
     public function Get(string $id)
     {
-       return Requests::Get("$this->baseUrl/$id", $this->token);
+        return Requests::Get("$this->baseUrl/$id", $this->token);
     }
 
     public function GetAll($page = 1, $limit = 50, $search = '')

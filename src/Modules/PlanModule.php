@@ -12,7 +12,7 @@ class PlanModule extends FullModuleBase
 
     public function FindById(string $id)
     {
-       return $this->Get($id);
+        return $this->Get($id);
     }
 
     public function FindPlansByName(string $name)
