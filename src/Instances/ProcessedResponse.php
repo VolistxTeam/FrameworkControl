@@ -9,7 +9,6 @@ use Psr\Http\Message\ResponseInterface;
 
 class ProcessedResponse
 {
-    public bool $error = false;
     public ?int $status_code;
     public ?array $headers;
     public mixed $body;
@@ -24,22 +23,13 @@ class ProcessedResponse
             return;
         }
 
-        if ($response instanceof (ClientException::class)) {
-            $this->error = true;
+        if ($response instanceof (ClientException::class) || $response instanceof (BadResponseException::class)) {
             $this->headers = $response->getResponse()->getHeaders();
             $this->body = json_decode($response->getResponse()->getBody()->getContents(), true);
             return;
         }
 
-        if ($response instanceof (BadResponseException::class)) {
-            $this->error = true;
-            $this->status_code = $response->getCode();
-            $this->headers = $response->getResponse()->getHeaders();
-            $this->body = json_decode($response->getResponse()->getBody()->getContents(), true);
-        }
-
         if ($response instanceof (GuzzleException::class)) {
-            $this->error = true;
             $this->headers = null;
             $this->body = null;
         }
