@@ -15,11 +15,11 @@ class ProcessedResponse
 
     public function __construct($response)
     {
-
         if ($response instanceof (ResponseInterface::class)) {
             $this->headers = $response->getHeaders();
             $this->body = json_decode($response->getBody()->getContents(), true);
             $this->status_code = $response->getStatusCode();
+
             return;
         }
 
@@ -27,6 +27,7 @@ class ProcessedResponse
             $this->headers = $response->getResponse()->getHeaders();
             $this->body = json_decode($response->getResponse()->getBody()->getContents(), true);
             $this->status_code = $response->getStatusCode();
+
             return;
         }
 
