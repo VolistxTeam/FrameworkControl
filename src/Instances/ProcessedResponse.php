@@ -19,14 +19,14 @@ class ProcessedResponse
         if ($response instanceof (ResponseInterface::class)) {
             $this->headers = $response->getHeaders();
             $this->body = json_decode($response->getBody()->getContents(), true);
-            $this->status_code = $response->getStatusCode;
+            $this->status_code = $response->getStatusCode();
             return;
         }
 
         if ($response instanceof (ClientException::class) || $response instanceof (BadResponseException::class)) {
             $this->headers = $response->getResponse()->getHeaders();
             $this->body = json_decode($response->getResponse()->getBody()->getContents(), true);
-            $this->status_code = $response->getStatusCode;
+            $this->status_code = $response->getStatusCode();
             return;
         }
 
