@@ -15,17 +15,16 @@ class ProcessedResponse
 
     public function __construct($response)
     {
+        if ($response instanceof (BadResponseException::class)) {
+            $this->headers = $response->getResponse()->getHeaders();
+            $this->body = json_decode($response->getResponse()->getBody()->getContents(), true);
+            $this->status_code = $response->getResponse()->getStatusCode();
+            return;
+        }
 
         if ($response instanceof (ResponseInterface::class)) {
             $this->headers = $response->getHeaders();
             $this->body = json_decode($response->getBody()->getContents(), true);
-            $this->status_code = $response->getStatusCode();
-            return;
-        }
-
-        if ($response instanceof (ClientException::class) || $response instanceof (BadResponseException::class)) {
-            $this->headers = $response->getResponse()->getHeaders();
-            $this->body = json_decode($response->getResponse()->getBody()->getContents(), true);
             $this->status_code = $response->getStatusCode();
             return;
         }
