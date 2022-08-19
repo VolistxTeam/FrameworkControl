@@ -15,23 +15,23 @@ class ProcessedResponse
 
     public function __construct($response)
     {
+        $this->status_code = $response->getCode();
+
         if ($response instanceof (ResponseInterface::class)) {
-            $this->status_code = $response->getStatusCode();
             $this->headers = $response->getHeaders();
             $this->body = json_decode($response->getBody()->getContents(), true);
-            $this->error = false;
+            return;
         }
 
         if ($response instanceof (ClientException::class)) {
             $this->error = true;
-            $this->status_code = $response->getCode();
             $this->headers = $response->getResponse()->getHeaders();
             $this->body = json_decode($response->getResponse()->getBody()->getContents(), true);
+            return;
         }
 
         if ($response instanceof (GuzzleException::class)) {
             $this->error = true;
-            $this->status_code = $response->getCode();
             $this->headers = null;
             $this->body = null;
         }
