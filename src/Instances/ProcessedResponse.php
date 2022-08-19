@@ -20,12 +20,14 @@ class ProcessedResponse
         if ($response instanceof (ResponseInterface::class)) {
             $this->headers = $response->getHeaders();
             $this->body = json_decode($response->getBody()->getContents(), true);
+
             return;
         }
 
         if ($response instanceof (ClientException::class) || $response instanceof (BadResponseException::class)) {
             $this->headers = $response->getResponse()->getHeaders();
             $this->body = json_decode($response->getResponse()->getBody()->getContents(), true);
+
             return;
         }
 
