@@ -3,7 +3,6 @@
 namespace Volistx\FrameworkControl\Instances;
 
 use GuzzleHttp\Exception\BadResponseException;
-use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
@@ -19,6 +18,7 @@ class ProcessedResponse
             $this->headers = $response->getResponse()->getHeaders();
             $this->body = json_decode($response->getResponse()->getBody()->getContents(), true);
             $this->status_code = $response->getResponse()->getStatusCode();
+
             return;
         }
 
@@ -26,6 +26,7 @@ class ProcessedResponse
             $this->headers = $response->getHeaders();
             $this->body = json_decode($response->getBody()->getContents(), true);
             $this->status_code = $response->getStatusCode();
+
             return;
         }
 
